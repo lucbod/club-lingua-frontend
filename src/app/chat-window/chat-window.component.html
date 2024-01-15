@@ -1,1 +1,37 @@
-<p>chat-window works!</p>
+<!-- chat-window.component.html -->
+
+<div class="chat-container">
+    <div class="user-list">
+        <h3>ONLINE:</h3>
+        <!-- List of available users -->
+        <ul>
+            <li>User 1</li>
+            <li>User 2</li>
+            <!-- Add more users dynamically -->
+        </ul>
+    </div>
+
+    <div class="chat-content">
+        <!-- Full name of the user -->
+        <div class="user-info">
+            <h2>{{ userFullName }}</h2>
+        </div>
+
+        <!-- Chat messages area -->
+        <div class="chat-messages">
+            <!-- Display chat messages here -->
+            <div class="message">User 1: Hi there!</div>
+            <div class="message">You: Hello!</div>
+            <!-- Add more messages dynamically -->
+        </div>
+
+        <!-- Input area for writing messages -->
+        <div class="message-input">
+            <textarea [(ngModel)]="message" placeholder="Type your message..."></textarea>
+            <button (click)="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <!-- Logout button -->
+    <button class="logout-button" (click)="logout()">Logout</button>
+</div>

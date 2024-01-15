@@ -1,0 +1,44 @@
+.chat-container {
+  display: flex;
+  border: 1px solid #e2acac;
+  height: 80vh;
+}
+
+.user-list, .chat-content {
+  padding: 10px;
+}
+
+.user-list {
+  flex-basis: 20%;
+  border-right: 1px solid #ccc;
+}
+
+.user-info {
+  margin-bottom: 10px;
+}
+
+.chat-messages {
+  overflow-y: auto;
+  max-height: calc(100% - 120px);
+}
+
+.message {
+  margin-bottom: 8px;
+}
+
+.message-input {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+}
+
+textarea {
+  flex: 1;
+  margin-right: 8px;
+}
+
+.logout-button {
+  margin-top: 500px;
+  max-width: 60px;
+  max-height: 20px;
+}
