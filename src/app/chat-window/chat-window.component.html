@@ -8,7 +8,7 @@
             <span class="nbr-msg hidden">0</span>
         </div>
     </div>
-
+    <!-- TODO, move username of logged user closer to the logout button -->
     <div class="chat-content">
         <!-- Full name of the user -->
         <div class="user-info">
@@ -17,8 +17,11 @@
 
         <!-- Chat messages area -->
         <div class="chat-messages">
-            <div *ngFor="let chatMessage of userChatMessages" class="message">
+            <!-- <div *ngFor="let chatMessage of userChatMessages" class="message">
                 {{ chatMessage }}
+            </div> -->
+            <div *ngFor="let message of messages">
+                {{ message.content }}
             </div>
         </div>
 

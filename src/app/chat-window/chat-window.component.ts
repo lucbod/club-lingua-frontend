@@ -13,6 +13,7 @@ export class ChatWindowComponent implements OnInit {
   message: any;
   userFullName: any;
   loggedInUser: any;
+  messages: any[] = [];
 
   connectedUsers: any[] = [];
   messageFormHidden: boolean = false;
@@ -85,6 +86,10 @@ export class ChatWindowComponent implements OnInit {
         const messages = await this.userService.getUserChatMessages(
           selectedUserId
         );
+
+        // Assign the messages to the component property
+        this.messages = messages;
+
         // Process and display messages
         console.log('User chat messages:', messages);
       } catch (error) {
