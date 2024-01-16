@@ -82,9 +82,9 @@ export class ChatWindowComponent implements OnInit {
     console.log('SelectedUser: ' + selectedUserId);
     if (selectedUserId) {
       try {
-        const messages = await this.userService
-          .getUserChatMessages(this.userFullName, selectedUserId)
-          .toPromise();
+        const messages = await this.userService.getUserChatMessages(
+          selectedUserId
+        );
         // Process and display messages
         console.log('User chat messages:', messages);
       } catch (error) {

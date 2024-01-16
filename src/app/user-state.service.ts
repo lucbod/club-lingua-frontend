@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 export class UserStateService {
   private loggedInUser: any | null = null;
   setSelectedUserId: any;
+  nickname: string | null = null;
 
   setLoggedInUser(user: any): void {
     this.loggedInUser = user;
@@ -13,5 +14,13 @@ export class UserStateService {
 
   getLoggedInUser(): any | null {
     return this.loggedInUser;
+  }
+
+  setNickname(nickname: string): void {
+    this.nickname = nickname;
+  }
+
+  getNickname(): string | null {
+    return this.nickname;
   }
 }
