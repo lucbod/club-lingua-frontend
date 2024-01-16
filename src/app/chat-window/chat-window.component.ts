@@ -1,13 +1,32 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-chat-window',
   templateUrl: './chat-window.component.html',
-  styleUrl: './chat-window.component.css',
+  styleUrls: ['./chat-window.component.css'],
 })
-export class ChatWindowComponent {
+export class ChatWindowComponent implements OnInit {
   message: any;
   userFullName: any;
+
+  connectedUsers: any[] = [];
+
+  constructor(private userService: UserService) {}
+
+  ngOnInit(): void {
+    // Fetch and display connected users on component initialization
+    this.findAndDisplayConnectedUsers();
+  }
+
+  private findAndDisplayConnectedUsers(): void {
+    this.userService.getConnectedUsers().subscribe((connectedUsers) => {
+      this.connectedUsers = connectedUsers.filter(
+        (user) => user.nickName !== this.userFullName
+      );
+    });
+  }
+
   sendMessage() {
     throw new Error('Method not implemented.');
   }

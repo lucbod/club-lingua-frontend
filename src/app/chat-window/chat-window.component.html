@@ -5,9 +5,7 @@
         <h3>ONLINE:</h3>
         <!-- List of available users -->
         <ul>
-            <li>User 1</li>
-            <li>User 2</li>
-            <!-- Add more users dynamically -->
+            <li *ngFor="let user of connectedUsers">{{ user.nickName }}</li>
         </ul>
     </div>
 

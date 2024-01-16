@@ -14,7 +14,12 @@ export class WebsocketService {
   constructor(private router: Router) {}
 
   connect(nickname: string, fullname: string): void {
-    const socket = new SockJS('https://club-lingua-backend.onrender.com/ws'); // Update the WebSocket URL
+    // production
+    // const socket = new SockJS('https://club-lingua-backend.onrender.com/ws');
+
+    //dev
+    const socket = new SockJS('http://localhost:8088/ws'); // Update the WebSocket URL
+
     this.stompClient = Stomp.over(socket);
 
     this.stompClient.connect(
