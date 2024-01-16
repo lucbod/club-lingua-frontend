@@ -7,6 +7,8 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class WebsocketService {
+  loggedInUser: any | null = null; // Store the logged-in user information here
+
   private stompClient!: Stomp.Client;
   private nickname!: string;
   private fullname!: string;
@@ -38,6 +40,9 @@ export class WebsocketService {
             status: 'ONLINE',
           })
         );
+
+        // Store the loggedInUser information
+        this.loggedInUser = { nickName: nickname, fullName: fullname };
 
         // Redirect to /chat-window after successful connection
         this.router.navigate(['/chat-window']);

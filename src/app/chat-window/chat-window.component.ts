@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
+import { UserStateService } from '../user-state.service';
+import { WebsocketService } from '../websocket.service';
+import { RecepientStateService } from '../recepient-state.service';
 
 @Component({
   selector: 'app-chat-window',
@@ -7,19 +10,28 @@ import { UserService } from '../user.service';
   styleUrls: ['./chat-window.component.css'],
 })
 export class ChatWindowComponent implements OnInit {
-  userItemClick(_t6: any) {
-    throw new Error('Method not implemented.');
-  }
   message: any;
   userFullName: any;
+  loggedInUser: any;
 
   connectedUsers: any[] = [];
+  messageFormHidden: boolean = false;
+  userChatMessages: string[] = [];
 
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private userStateService: UserStateService,
+    private websocketService: WebsocketService,
+    private recepientStateService: RecepientStateService
+  ) {}
 
   ngOnInit(): void {
     // Fetch and display connected users on component initialization
     this.findAndDisplayConnectedUsers();
+
+    // Access the loggedInUser information from WebsocketService
+    this.loggedInUser = this.websocketService.loggedInUser;
+    this.userFullName = this.loggedInUser?.fullName;
   }
 
   private findAndDisplayConnectedUsers(): void {
@@ -30,6 +42,32 @@ export class ChatWindowComponent implements OnInit {
     });
   }
 
+  userItemClick(user: any): void {
+    console.log('user clicked:' + user);
+
+    this.clearActiveUsers();
+    this.messageFormHidden = false;
+
+    // Add logic to fetch and display user-specific chat
+    this.recepientStateService.setRecepientUserId(user.nickName);
+    this.fetchAndDisplayUserChat().then();
+
+    // Update the UI for the clicked user
+    const nbrMsg = document.querySelector(
+      `#${user.nickName} .nbr-msg`
+    ) as HTMLElement;
+    if (nbrMsg) {
+      nbrMsg.classList.add('hidden');
+      nbrMsg.textContent = '0';
+    }
+  }
+
+  private clearActiveUsers(): void {
+    document.querySelectorAll('.user-item').forEach((item) => {
+      item.classList.remove('active');
+    });
+  }
+
   sendMessage() {
     throw new Error('Method not implemented.');
   }
@@ -37,5 +75,21 @@ export class ChatWindowComponent implements OnInit {
   //TODO
   logout() {
     throw new Error('Method not implemented.');
+  }
+
+  async fetchAndDisplayUserChat(): Promise<void> {
+    const selectedUserId = this.recepientStateService.getRecepientUserId();
+    console.log('SelectedUser: ' + selectedUserId);
+    if (selectedUserId) {
+      try {
+        const messages = await this.userService
+          .getUserChatMessages(this.userFullName, selectedUserId)
+          .toPromise();
+        // Process and display messages
+        console.log('User chat messages:', messages);
+      } catch (error) {
+        console.error(error);
+      }
+    }
   }
 }
