@@ -3,10 +3,10 @@
 <div class="chat-container">
     <div class="user-list">
         <h3>ONLINE:</h3>
-        <!-- List of available users -->
-        <ul>
-            <li *ngFor="let user of connectedUsers">{{ user.nickName }}</li>
-        </ul>
+        <div *ngFor="let user of connectedUsers" class="user-item" (click)="userItemClick(user)">
+            <app-user-icon [username]="user.fullName"></app-user-icon>
+            <span class="nbr-msg hidden">0</span>
+        </div>
     </div>
 
     <div class="chat-content">
@@ -18,8 +18,8 @@
         <!-- Chat messages area -->
         <div class="chat-messages">
             <!-- Display chat messages here -->
-            <div class="message">User 1: Hi there!</div>
-            <div class="message">You: Hello!</div>
+            <div class="message received">User 1: Hi there!</div>
+            <div class="message sent">You: Hello!</div>
             <!-- Add more messages dynamically -->
         </div>
 

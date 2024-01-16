@@ -7,6 +7,9 @@ import { UserService } from '../user.service';
   styleUrls: ['./chat-window.component.css'],
 })
 export class ChatWindowComponent implements OnInit {
+  userItemClick(_t6: any) {
+    throw new Error('Method not implemented.');
+  }
   message: any;
   userFullName: any;
 

@@ -1,44 +1,51 @@
+/* chat-window.component.css */
+
 .chat-container {
   display: flex;
-  border: 1px solid #e2acac;
-  height: 80vh;
-}
-
-.user-list, .chat-content {
-  padding: 10px;
+  justify-content: space-between;
 }
 
 .user-list {
-  flex-basis: 20%;
-  border-right: 1px solid #ccc;
+  width: 30%; /* Adjust the width as needed */
+  padding: 16px;
+  border-right: 1px solid #ccc; /* Add a border to separate users from messages */
 }
 
-.user-info {
-  margin-bottom: 10px;
+.chat-content {
+  width: 60%; /* Adjust the width as needed */
+  padding: 16px;
 }
 
 .chat-messages {
-  overflow-y: auto;
-  max-height: calc(100% - 120px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
 .message {
+  background-color: #e6f7ff;
+  padding: 8px;
+  border-radius: 8px;
   margin-bottom: 8px;
 }
 
-.message-input {
-  margin-top: 10px;
-  display: flex;
-  align-items: center;
+.message.sent {
+  align-self: flex-end; /* Align sent messages to the right */
 }
 
-textarea {
+.message-input {
+  margin-top: 16px;
+  display: flex;
+}
+
+.message-input textarea {
   flex: 1;
   margin-right: 8px;
 }
 
 .logout-button {
-  margin-top: 500px;
-  max-width: 60px;
-  max-height: 20px;
+   align-self: flex-end;
+   margin-bottom: 30px;
+   margin-right: 30px;
+   max-height: 50px;
 }
