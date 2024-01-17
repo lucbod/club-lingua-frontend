@@ -105,11 +105,6 @@ export class ChatWindowComponent implements OnInit {
     this.userService.getUserChatMessages(recipientId);
   }
 
-  //TODO
-  logout() {
-    throw new Error('Method not implemented.');
-  }
-
   async fetchAndDisplayUserChat(): Promise<void> {
     const selectedUserId = this.recepientStateService.getRecepientUserId();
     console.log('SelectedUser: ' + selectedUserId);
@@ -127,6 +122,17 @@ export class ChatWindowComponent implements OnInit {
       } catch (error) {
         console.error(error);
       }
+    }
+  }
+
+  logout(): void {
+    const nickname = this.userStateService.nickname;
+    const fullname = this.websocketService.loggedInUser;
+    if (nickname != null) {
+      this.websocketService.logout(nickname, fullname);
+    } else {
+      console.log('nickname' + nickname);
+      throw new Error('nickname is null');
     }
   }
 }

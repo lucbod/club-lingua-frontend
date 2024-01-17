@@ -102,4 +102,25 @@ export class WebsocketService {
     // Implement the logic to fetch and display connected users
     return Promise.resolve();
   }
+
+  logout(nickname: string, fullname: any): void {
+    if (this.stompClient) {
+      const fullNameString = fullname.fullName;
+
+      this.stompClient.send(
+        '/app/user.disconnectUser',
+        {},
+        JSON.stringify({
+          nickName: nickname,
+          fullName: fullNameString,
+          status: 'OFFLINE',
+        })
+      );
+      // Close the WebSocket connection
+      this.stompClient.disconnect(() => {
+        console.log('WebSocket disconnected.');
+        this.router.navigate(['/chat']);
+      });
+    }
+  }
 }
