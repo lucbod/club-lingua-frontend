@@ -1,5 +1,3 @@
-<!-- chat-window.component.html -->
-
 <div class="chat-container">
     <div class="user-list">
         <h3>ONLINE:</h3>
@@ -8,28 +6,26 @@
             <span class="nbr-msg hidden">0</span>
         </div>
     </div>
-
+    <!-- TODO, move username of logged user closer to the logout button -->
     <div class="chat-content">
-        <!-- Full name of the user -->
+
         <div class="user-info">
             <h2>{{ userFullName }}</h2>
         </div>
 
         <!-- Chat messages area -->
         <div class="chat-messages">
-            <!-- Display chat messages here -->
-            <div class="message received">User 1: Hi there!</div>
-            <div class="message sent">You: Hello!</div>
-            <!-- Add more messages dynamically -->
+            <div *ngFor="let message of messages">
+                {{ message.content }}
+            </div>
         </div>
 
         <!-- Input area for writing messages -->
         <div class="message-input">
             <textarea [(ngModel)]="message" placeholder="Type your message..."></textarea>
-            <button (click)="sendMessage()">Send</button>
+            <button (click)="sendMessage(message)">Send</button>
         </div>
     </div>
 
-    <!-- Logout button -->
     <button class="logout-button" (click)="logout()">Logout</button>
 </div>
