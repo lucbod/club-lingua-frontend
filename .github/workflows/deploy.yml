@@ -18,6 +18,9 @@ jobs:
       with:
         node-version: 16
 
+    - name: Install Angular CLI
+      run: npm install -g @angular/cli
+
     - name: Install Dependencies
       run: npm install
 
@@ -28,4 +31,4 @@ jobs:
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./dist/your-angular-app
+        publish_dir: ./dist/club-lingua-frontend
