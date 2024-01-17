@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { lastValueFrom } from 'rxjs';
 import { WebsocketService } from './websocket.service';
 import { UserStateService } from './user-state.service';
+import { ChatService } from './chat.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,8 @@ export class UserService {
   constructor(
     private http: HttpClient,
     private websocketService: WebsocketService,
-    private userStateService: UserStateService
+    private userStateService: UserStateService,
+    private chatService: ChatService
   ) {}
 
   async getUserChatMessages(recipientId: string): Promise<any[]> {
@@ -29,6 +31,10 @@ export class UserService {
 
     try {
       const response = await lastValueFrom(this.http.get<any[]>(endpoint));
+
+      // Update the messages in the ChatService
+      this.chatService.updateMessages(response);
+
       return response;
     } catch (error) {
       console.error(error);

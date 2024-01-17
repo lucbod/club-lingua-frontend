@@ -3,6 +3,7 @@ import { UserService } from '../services/user.service';
 import { UserStateService } from '../services/user-state.service';
 import { WebsocketService } from '../services/websocket.service';
 import { RecepientStateService } from '../services/recepient-state.service';
+import { ChatService } from '../services/chat.service';
 
 @Component({
   selector: 'app-chat-window',
@@ -23,7 +24,8 @@ export class ChatWindowComponent implements OnInit {
     private userService: UserService,
     private userStateService: UserStateService,
     private websocketService: WebsocketService,
-    private recepientStateService: RecepientStateService
+    private recepientStateService: RecepientStateService,
+    private chatService: ChatService
   ) {}
 
   ngOnInit(): void {
@@ -33,6 +35,29 @@ export class ChatWindowComponent implements OnInit {
     // Access the loggedInUser information from WebsocketService
     this.loggedInUser = this.websocketService.loggedInUser;
     this.userFullName = this.loggedInUser?.fullName;
+
+    // Subscribe to changes in the messages from the service
+    this.chatService.messages$.subscribe((messages) => {
+      this.messages = messages;
+    });
+
+    // Fetch initial messages
+    const recepientId = this.recepientStateService.getRecepientUserId();
+
+    // Check if recepientId is not null before calling getUserChatMessages
+    if (recepientId !== null) {
+      this.getUserChatMessages(recepientId);
+    } else {
+      console.error('Recepient ID is null.');
+    }
+  }
+
+  async getUserChatMessages(recipientId: string): Promise<void> {
+    // Fetch messages from the user.service
+    const messages = await this.userService.getUserChatMessages(recipientId);
+
+    // Update the messages in the service
+    this.chatService.updateMessages(messages);
   }
 
   private findAndDisplayConnectedUsers(): void {
