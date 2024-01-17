@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UserStateService } from '../user-state.service';
-import { RecepientStateService } from '../recepient-state.service';
+import { UserStateService } from '../services/user-state.service';
+import { RecepientStateService } from '../services/recepient-state.service';
 
 @Component({
   selector: 'app-user-messages',

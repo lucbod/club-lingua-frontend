@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../user.service';
-import { UserStateService } from '../user-state.service';
-import { WebsocketService } from '../websocket.service';
-import { RecepientStateService } from '../recepient-state.service';
+import { UserService } from '../services/user.service';
+import { UserStateService } from '../services/user-state.service';
+import { WebsocketService } from '../services/websocket.service';
+import { RecepientStateService } from '../services/recepient-state.service';
 
 @Component({
   selector: 'app-chat-window',
