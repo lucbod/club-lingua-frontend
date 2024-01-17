@@ -20,7 +20,7 @@ export class WebsocketService {
     // const socket = new SockJS('https://club-lingua-backend.onrender.com/ws');
 
     //dev
-    const socket = new SockJS('http://localhost:8088/ws'); // Update the WebSocket URL
+    const socket = new SockJS('http://localhost:8088/ws');
 
     this.stompClient = Stomp.over(socket);
 
@@ -28,9 +28,9 @@ export class WebsocketService {
       {},
       (frame) => {
         console.log('Connected:', frame);
+        //TODO
         // Additional logic for handling successful connection
-
-        // You can send data or do other operations here
+        // send data or do other operations here
         this.stompClient.send(
           '/app/user.addUser',
           {},
@@ -73,14 +73,11 @@ export class WebsocketService {
       })
     );
     // TODO
-    // 1. Update UI to show connected user's full name on the screen
-    // document.querySelector('#connected-user-fullname').textContent = this.fullname;
-    // 2. redirect user to chatapp window
-    // 3. display Logout button
+    // Remove logged in username from the list online users
 
     // Fetch and display connected users
     this.findAndDisplayConnectedUsers().then(() => {
-      // Additional logic after displaying connected users if needed
+      // Here commes dditional logic after displaying connected users if needed
     });
   }
 
@@ -96,10 +93,12 @@ export class WebsocketService {
   }
 
   private onMessageReceived(message: Stomp.Message): void {
+    // TODO!!!
     // Implement the logic to handle incoming messages
   }
 
   private findAndDisplayConnectedUsers(): Promise<void> {
+    // TODO: check if still necessary
     // Implement the logic to fetch and display connected users
     return Promise.resolve();
   }

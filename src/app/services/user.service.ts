@@ -17,6 +17,8 @@ export class UserService {
     private chatService: ChatService
   ) {}
 
+  private apiUrl = 'http://localhost:8088/users';
+
   async getUserChatMessages(recipientId: string): Promise<any[]> {
     const senderId = this.userStateService.getNickname();
 
@@ -41,8 +43,6 @@ export class UserService {
       return [];
     }
   }
-
-  private apiUrl = 'http://localhost:8088/users'; // Adjust the API endpoint
 
   getConnectedUsers(): Observable<any[]> {
     return this.http.get<any[]>(this.apiUrl);

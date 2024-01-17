@@ -1,5 +1,3 @@
-<!-- chat-window.component.html -->
-
 <div class="chat-container">
     <div class="user-list">
         <h3>ONLINE:</h3>
@@ -10,16 +8,13 @@
     </div>
     <!-- TODO, move username of logged user closer to the logout button -->
     <div class="chat-content">
-        <!-- Full name of the user -->
+
         <div class="user-info">
             <h2>{{ userFullName }}</h2>
         </div>
 
         <!-- Chat messages area -->
         <div class="chat-messages">
-            <!-- <div *ngFor="let chatMessage of userChatMessages" class="message">
-                {{ chatMessage }}
-            </div> -->
             <div *ngFor="let message of messages">
                 {{ message.content }}
             </div>
@@ -32,6 +27,5 @@
         </div>
     </div>
 
-    <!-- Logout button -->
     <button class="logout-button" (click)="logout()">Logout</button>
 </div>
