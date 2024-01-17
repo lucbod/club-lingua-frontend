@@ -68,9 +68,16 @@ export class ChatWindowComponent implements OnInit {
       item.classList.remove('active');
     });
   }
+  sendMessage(content: string): void {
+    const recipientId = this.recepientStateService.getRecepientUserId() ?? '';
+    const nickName = this.userStateService.getNickname() ?? '';
+    this.websocketService.sendMessage(nickName, recipientId, content);
 
-  sendMessage() {
-    throw new Error('Method not implemented.');
+    //reset form
+    this.message = '';
+
+    // refresh msgs to see the new one
+    this.userService.getUserChatMessages(recipientId);
   }
 
   //TODO

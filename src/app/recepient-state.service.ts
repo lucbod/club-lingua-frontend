@@ -11,6 +11,6 @@ export class RecepientStateService {
   }
 
   getRecepientUserId(): string | null {
-    return this.recepientUserId;
+    return this.recepientUserId ?? null;
   }
 }

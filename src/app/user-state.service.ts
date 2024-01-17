@@ -21,6 +21,6 @@ export class UserStateService {
   }
 
   getNickname(): string | null {
-    return this.nickname;
+    return this.nickname ?? null;
   }
 }

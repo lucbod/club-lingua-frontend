@@ -28,7 +28,7 @@
         <!-- Input area for writing messages -->
         <div class="message-input">
             <textarea [(ngModel)]="message" placeholder="Type your message..."></textarea>
-            <button (click)="sendMessage()">Send</button>
+            <button (click)="sendMessage(message)">Send</button>
         </div>
     </div>
 

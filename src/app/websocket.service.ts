@@ -84,8 +84,15 @@ export class WebsocketService {
     });
   }
 
-  sendMessage(message: string): void {
-    // Modify this method to send messages as needed
+  sendMessage(senderId: string, recipientId: string, content: string): void {
+    const chatMessage = {
+      senderId: senderId,
+      recipientId: recipientId,
+      content: content,
+      timestamp: new Date(),
+    };
+
+    this.stompClient.send('/app/chat', {}, JSON.stringify(chatMessage));
   }
 
   private onMessageReceived(message: Stomp.Message): void {
