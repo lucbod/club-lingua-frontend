@@ -10,10 +10,26 @@ import { HttpClientModule } from '@angular/common/http';
 import { UserIconComponent } from './user-icon/user-icon.component';
 import { UserMessagesComponent } from './user-messages/user-messages.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @NgModule({
-  declarations: [AppComponent, ChatComponent, ChatWindowComponent, UserIconComponent, UserMessagesComponent, HomepageComponent],
-  imports: [BrowserModule, FormsModule, AppRoutingModule, HttpClientModule],
+  declarations: [
+    AppComponent,
+    ChatComponent,
+    ChatWindowComponent,
+    UserIconComponent,
+    UserMessagesComponent,
+    HomepageComponent,
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    AppRoutingModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatSlideToggleModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
