@@ -10,8 +10,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { UserIconComponent } from './user-icon/user-icon.component';
 import { UserMessagesComponent } from './user-messages/user-messages.component';
 import { HomepageComponent } from './homepage/homepage.component';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatButtonModule } from '@angular/material/button';
+import { HowItWorksComponent } from './how-it-works/how-it-works.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +24,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     UserIconComponent,
     UserMessagesComponent,
     HomepageComponent,
+    HowItWorksComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,6 +33,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     HttpClientModule,
     BrowserAnimationsModule,
     MatSlideToggleModule,
+    MatButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
