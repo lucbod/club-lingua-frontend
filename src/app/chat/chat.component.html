@@ -1,10 +1,17 @@
-<h2>Enter Chatroom</h2>
-<form id="usernameForm" (submit)="connect()">
-    <label for="nickname">Nickname:</label>
-    <input type="text" id="nickname" name="nickname" [(ngModel)]="nickname" required>
+<div class="container">
+    <form id="usernameForm" (submit)="connect()" [@fadeIn]="true">
+        <div class="image-container">
+            <img src="../../assets/pics/girls-silhouette.png" alt="People having fun">
+        </div>
+        <div class="form-content">
+            <h2>Enter Chatroom</h2>
+            <label for="nickname">Nickname:</label>
+            <input type="text" id="nickname" name="nickname" [(ngModel)]="nickname" required>
 
-    <label for="fullname">Real Name:</label>
-    <input type="text" id="fullname" name="realname" [(ngModel)]="fullname" required>
+            <label for="fullname">Real Name:</label>
+            <input type="text" id="fullname" name="realname" [(ngModel)]="fullname" required>
 
-    <button type="submit">Enter Chatroom</button>
-</form>
+            <button type="submit" class="connect-button">Enter Chatroom</button>
+        </div>
+    </form>
+</div>
